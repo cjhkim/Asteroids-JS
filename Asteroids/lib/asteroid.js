@@ -7,7 +7,7 @@
     Asteroids.MovingObject.call(this, args);
     this.vel = Asteroids.Util.randomVec();
     this.color = "#FF0000";
-    this.radius = 40;
+    this.radius = 20;
   };
 
   Asteroids.Util.inherits(Asteroids.Asteroid, Asteroids.MovingObject);
