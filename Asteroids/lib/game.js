@@ -5,11 +5,12 @@
 
   Asteroids.Game = function() {
     this.asteroids = this.addAsteroids();
+    this.ship = new Asteroids.Ship({pos: [400, 300], game: this});
   };
 
   Asteroids.Game.DIM_X = 800;
   Asteroids.Game.DIM_Y = 600;
-  Asteroids.Game.NUM_ASTEROIDS = 1000;
+  Asteroids.Game.NUM_ASTEROIDS = 0;
 
   Asteroids.Game.prototype.addAsteroids = function () {
     var asteroids = [];
@@ -31,13 +32,13 @@
   Asteroids.Game.prototype.draw = function (ctx) {
     ctx.clearRect(0,0,800,600);
 
-    this.asteroids.forEach(function(asteroid) {
+    this.allObjects().forEach(function(asteroid) {
       asteroid.draw(ctx);
     });
   };
 
   Asteroids.Game.prototype.moveObjects = function () {
-    this.asteroids.forEach(function(asteroid) {
+    this.allObjects().forEach(function(asteroid) {
       asteroid.move();
     });
   };
@@ -61,10 +62,11 @@
   };
 
   Asteroids.Game.prototype.checkCollisions = function () {
-    for (var i = 0; i < this.asteroids.length; i++) {
-      for (var j = i+1; j < this.asteroids.length - 1; j++) {
-        if (this.asteroids[i].isCollidedWith(this.asteroids[j])){
-          this.asteroids[i].collideWith(this.asteroids[j]);
+    var objs = this.allObjects();
+    for (var i = 0; i < this.allObjects().length; i++) {
+      for (var j = i+1; j < this.allObjects().length; j++) {
+        if (objs[i].isCollidedWith(objs[j])){
+          objs[i].collideWith(objs[j]);
         }
       }
     }
@@ -80,37 +82,8 @@
     this.asteroids.splice(i, 1);
   };
 
-
-
-  // var MovingObject = Asteroids.MovingObject = function (args) {
-  //   this.pos = args["pos"];
-  //   this.vel = args["vel"];
-  //   this.radius = args["radius"];
-  //   this.color = args["color"];
-  // }
-  //
-  // MovingObject.prototype.draw = function (ctx) {
-  //   ctx.fillStyle = this.color;
-  //   ctx.beginPath();
-  //
-  //   ctx.arc(
-  //     this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, false
-  //   );
-  //   ctx.fill();
-  // };
-  //
-  // MovingObject.prototype.move = function () {
-  //   this.pos[0] += this.vel[0];
-  //   this.pos[1] += this.vel[1];
-  // }
-  //
-  // MovingObject.prototype.start = function(ctx) {
-  //   var ctx = ctx.getContext("2d");
-  //
-  //   // render at 60 FPS
-  //   window.setInterval((function () {
-  //     this.draw(ctx);
-  //   }).bind(this), 1000 / 60)
-  // };
+  Asteroids.Game.prototype.allObjects = function () {
+    return this.asteroids.concat([this.ship]);
+  };
 
 })();
