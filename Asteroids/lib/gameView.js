@@ -13,20 +13,11 @@
   Asteroids.GameView.prototype.start = function() {
     var game = this.game;
     var ctx = this.ctx;
-    this.bindKeyHandlers();
 
     window.setInterval((function () {
       game.step();
       game.draw(ctx);
+      console.log(key.getPressedKeyCodes());
     }).bind(this), 1000/50);
   };
-
-  Asteroids.GameView.prototype.bindKeyHandlers = function () {
-    var that = this;
-    key('w', function(){that.game.ship.power([0,-1])} );
-    key('a', function(){that.game.ship.power([-1,0])} );
-    key('s', function(){that.game.ship.power([0,1])} );
-    key('d', function(){that.game.ship.power([1,0])} );
-  };
-
 })();

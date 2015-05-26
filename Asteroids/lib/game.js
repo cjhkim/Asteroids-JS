@@ -32,14 +32,14 @@
   Game.prototype.draw = function (ctx) {
     ctx.clearRect(0,0,800,600);
 
-    this.allObjects().forEach(function(asteroid) {
-      asteroid.draw(ctx);
+    this.allObjects().forEach(function(object) {
+      object.draw(ctx);
     });
   };
 
   Game.prototype.moveObjects = function () {
-    this.allObjects().forEach(function(asteroid) {
-      asteroid.move();
+    this.allObjects().forEach(function(object) {
+      object.move();
     });
   };
 
