@@ -6,8 +6,7 @@
   Asteroids.Asteroid = function(args) {
     Asteroids.MovingObject.call(this, args);
     this.vel = Asteroids.Util.randomVec();
-    this.color = "#FF0000";
-    this.radius = 20;
+    this.color = "#7a5230";
   };
 
   Asteroids.Util.inherits(Asteroids.Asteroid, Asteroids.MovingObject);

@@ -46,7 +46,7 @@ Function.prototype.curry = function (numArgs) {
 };
 
 Function.prototype.inherits = function (SuperClass) {
-  function Surrogate () { };
+  function Surrogate () { }
   Surrogate.prototype = SuperClass.prototype;
   this.prototype = new Surrogate();
 };
@@ -58,12 +58,12 @@ MovingObject.prototype.printTest = function () {
   console.log("TESTING");
 };
 
-function Ship () {};
+function Ship () {}
 Ship.inherits(MovingObject);
 var testShip = new Ship();
 testShip.printTest();
 
-function Asteroid () {};
+function Asteroid () {}
 Asteroid.inherits(MovingObject);
 Asteroid.prototype.blowUp = function () {
   console.log("BLOWING UP");
@@ -71,3 +71,5 @@ Asteroid.prototype.blowUp = function () {
 
 // testShip.blowUp();
 // MovingObject.blowUp();
+
+console.log("hello")P

@@ -13,11 +13,16 @@
   Asteroids.GameView.prototype.start = function() {
     var game = this.game;
     var ctx = this.ctx;
+    var bg = new Image();
+    bg.onload = function () {
+      ctx.drawImage(bg, 0, 0);
+    };
+    bg.src = './lib/bg.jpg';
 
     window.setInterval((function () {
       game.step();
-      game.draw(ctx);
-      console.log(key.getPressedKeyCodes());
+      game.draw(ctx, bg);     
+
     }).bind(this), 1000/50);
   };
 })();

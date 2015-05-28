@@ -5,19 +5,20 @@
 
   var Game = Asteroids.Game = function() {
     this.asteroids = this.addAsteroids();
-    this.ship = new Asteroids.Ship({pos: [400, 300], game: this});
+    this.ship = new Asteroids.Ship({pos: [Game.DIM_X/2, Game.DIM_Y/2], game: this});
   };
 
-  Game.DIM_X = 800;
-  Game.DIM_Y = 600;
-  Game.NUM_ASTEROIDS = 0;
+  Game.DIM_X = 1200;
+  Game.DIM_Y = 900;
+  Game.NUM_ASTEROIDS = 10;
 
   Game.prototype.addAsteroids = function () {
     var asteroids = [];
     for (var i = 0; i < Game.NUM_ASTEROIDS; i++) {
       var asteroid = new Asteroids.Asteroid({
         pos: this.randomPosition(),
-        game: this
+        game: this,
+        radius: Math.floor(Math.random() * (11)+8)
       });
 
       asteroids.push(asteroid);
@@ -29,9 +30,9 @@
     return [Math.random() * Game.DIM_X, Math.random() * Game.DIM_Y];
   };
 
-  Game.prototype.draw = function (ctx) {
-    ctx.clearRect(0,0,800,600);
-
+  Game.prototype.draw = function (ctx, bg) {
+    ctx.clearRect(0,0,Game.DIM_X,Game.DIM_Y);
+    ctx.drawImage(bg, 0, 0);
     this.allObjects().forEach(function(object) {
       object.draw(ctx);
     });

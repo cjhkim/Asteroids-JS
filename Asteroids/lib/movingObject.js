@@ -4,11 +4,11 @@
   }
 
   var MovingObject = Asteroids.MovingObject = function (args) {
-    this.pos = args["pos"];
-    this.vel = args["vel"];
-    this.radius = args["radius"];
-    this.color = args["color"];
-    this.game = args["game"];
+    this.pos = args.pos;
+    this.vel = args.vel;
+    this.radius = args.radius;
+    this.color = args.color;
+    this.game = args.game;
   };
 
   MovingObject.prototype.draw = function (ctx) {
@@ -33,7 +33,7 @@
     var distance = Math.pow(distx, 2) + Math.pow(disty, 2);
     distance = Math.sqrt(distance);
 
-    return distance < this.radius * 2;
+    return distance < this.radius + otherObject.radius;
   };
 
   MovingObject.prototype.collideWith = function(otherObject) {
